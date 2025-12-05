@@ -16,19 +16,19 @@ class CategoriesSeeder extends Seeder
         $categories = [
             [
                 'slug' => 'teknologi',
-                'catagori' => 'Teknologi',
+                'category' => 'Teknologi',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'slug' => 'lifestyle',
-                'catagori' => 'Lifestyle',
+                'category' => 'Lifestyle',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'slug' => 'bisnis',
-                'catagori' => 'Bisnis',
+                'category' => 'Bisnis',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

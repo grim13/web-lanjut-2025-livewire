@@ -120,7 +120,7 @@ class PostsSeeder extends Seeder
             foreach ($randomCategories as $categoryId) {
                 DB::table('post_categories')->insert([
                     'post_id' => $postId,
-                    'catagories_id' => $categoryId,
+                    'category_id' => $categoryId,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
