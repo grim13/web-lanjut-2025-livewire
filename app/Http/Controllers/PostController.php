@@ -15,8 +15,6 @@ class PostController extends Controller
             'posts.feature_image:id,post_id,feature_image',
             'posts.categories:id,category',
         ])->select('id','email','name')->find(1);
-
-        // $user_posts = $user->posts[0]->categories;
         return $user;
     }
 
