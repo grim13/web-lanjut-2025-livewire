@@ -16,7 +16,13 @@ class PostController extends Controller
             'posts.categories:id,category',
         ])->select('id','email','name')->find(1);
 
-        // $user_posts = $user->posts;
+        // $user_posts = $user->posts[0]->categories;
         return $user;
+    }
+
+    public function CatagoryPosts()
+    {
+        $catagory = Catagory::where('slug', 'technology');
+        return $category;
     }
 }
