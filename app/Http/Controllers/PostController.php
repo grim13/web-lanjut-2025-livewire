@@ -27,6 +27,31 @@ class PostController extends Controller
         return view('post.add', compact('categories'));
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:posts,slug',
+            'content' => 'required|string',
+            'categories' => 'required|array',
+            'feature_image' => 'nullable|image|max:2048',
+        ]);
+        $post = new Post();
+        $post->user_id = auth()->id();
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->content = $request->content;
+        $post->save();
+        $post->categories()->sync($request->categories);
+        if ($request->hasFile('feature_image')) {
+            $path = $request->file('feature_image')->store('feature_images', 'public');
+            $post->feature_image()->create([
+                'feature_image' => $path,
+            ]);
+        }
+        return redirect()->route('post')->with('success', 'Post created successfully.');
+    }
+
     public function get()
     {
         $user = User::with([

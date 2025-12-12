@@ -2,6 +2,11 @@
     <a href="/post/add" class="inline-flex items-center px-4 py-2 mb-4 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-700 focus:outline-none">
       Add New Post
     </a>
+    @if (session('success'))
+      <div class="mb-4 px-4 py-3 bg-green-100 border border-green-400 text-green-700 rounded">
+        {{ session('success') }}
+      </div>
+    @endif
     <table class="min-w-full divide-y divide-gray-200 shadow-sm sm:rounded-lg bg-white">
         <thead class="bg-gray-50">
             <tr>
