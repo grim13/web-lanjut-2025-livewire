@@ -1,5 +1,5 @@
 <x-layouts.app :title="__('Tambah Post')">
-  <form method="POST" action="{{ url('/post/store') }}" enctype="multipart/form-data" class="max-w-2xl mx-auto bg-white p-6 rounded shadow-md">
+  <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data" class="max-w-2xl mx-auto bg-white p-6 rounded shadow-md">
     @csrf
     <div class="mb-4">
       <label for="title" class="block text-gray-700 font-medium mb-2">Title</label>

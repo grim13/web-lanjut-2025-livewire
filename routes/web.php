@@ -34,4 +34,5 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/post', [\App\Http\Controllers\PostController::class, 'index'])->name('post');
     Route::get('/post/add', [\App\Http\Controllers\PostController::class, 'add'])->name('post.add');
+    Route::post('/post/store', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
 });
