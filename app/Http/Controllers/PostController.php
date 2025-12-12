@@ -5,9 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Category;
 
 class PostController extends Controller
 {
+    public function index()
+    {
+        $posts = Post::with([
+                'user:id,email,name', 
+                'feature_image:id,post_id,feature_image',
+                'categories:id,category',
+            ])
+            ->select('id', 'user_id', 'title')
+            ->paginate(10);
+        return view('post.index', compact('posts'));
+    }
+
+    public function add()
+    {
+        $categories = Category::all();
+        return view('post.add', compact('categories'));
+    }
+
     public function get()
     {
         $user = User::with([

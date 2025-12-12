@@ -32,5 +32,6 @@ Route::middleware(['auth'])->group(function () {
         )
         ->name('two-factor.show');
     
-    Route::get('/posts', [\App\Http\Controllers\PostController::class, 'get'])->name('posts');
+    Route::get('/post', [\App\Http\Controllers\PostController::class, 'index'])->name('post');
+    Route::get('/post/add', [\App\Http\Controllers\PostController::class, 'add'])->name('post.add');
 });
