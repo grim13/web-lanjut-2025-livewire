@@ -52,6 +52,55 @@ class PostController extends Controller
         return redirect()->route('post')->with('success', 'Post created successfully.');
     }
 
+    public function edit($id)
+    {
+        $post = Post::with(
+                'feature_image:id,post_id,feature_image',
+                'categories:id,category')->findOrFail($id);
+        $categories = Category::all();
+        return view('post.edit', compact('post', 'categories'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:posts,slug,'.$id,
+            'content' => 'required|string',
+            'categories' => 'required|array',
+            'feature_image' => 'nullable|image|max:2048',
+        ]);
+        $post = Post::findOrFail($id);
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->content = $request->content;
+        $post->save();
+        $post->categories()->sync($request->categories);
+        if ($request->hasFile('feature_image')) {
+            if ($post->feature_image) {
+                \Storage::disk('public')->delete($post->feature_image->feature_image);
+                $post->feature_image()->delete();
+            }
+            $path = $request->file('feature_image')->store('feature_images', 'public');
+            $post->feature_image()->create([
+                'feature_image' => $path,
+            ]);
+        }
+        return redirect()->route('post')->with('success', 'Post updated successfully.');
+    }
+
+    public function delete($id)
+    {
+        $post = Post::findOrFail($id);
+        if ($post->feature_image) {
+            \Storage::disk('public')->delete($post->feature_image->feature_image);
+            $post->feature_image()->delete();
+        }
+        $post->categories()->detach();
+        $post->delete();
+        return redirect()->route('post')->with('success', 'Post deleted successfully.');
+    }
+
     public function get()
     {
         $user = User::with([

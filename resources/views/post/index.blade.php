@@ -26,10 +26,10 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $value->user->name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                         <div class="flex items-center space-x-2">
-                            <a href="/users/edit/{{ $value->id }}" class="inline-flex items-center px-3 py-1 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 focus:outline-none">
+                            <a href="/post/{{ $value->id }}/edit" class="inline-flex items-center px-3 py-1 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 focus:outline-none">
                                 Edit
                             </a>
-                            <a href="/users/delete/{{ $value->id }}" class="inline-flex items-center px-3 py-1 bg-red-600 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none">
+                            <a href="/post/{{ $value->id }}/delete" class="inline-flex items-center px-3 py-1 bg-red-600 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none">
                                 Delete
                             </a>
                         </div>
