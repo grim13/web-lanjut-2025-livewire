@@ -10,11 +10,12 @@ Route::get('/', function () {
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified' ])
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
+    
     Route::get('/users', [UserController::class, 'allUsers'])->name('users');
 
     Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
